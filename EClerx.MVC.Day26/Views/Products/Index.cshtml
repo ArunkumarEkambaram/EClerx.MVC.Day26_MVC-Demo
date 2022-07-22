@@ -1,0 +1,42 @@
+﻿@model IEnumerable<EClerx.MVC.Day26.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@*<ul>
+        @foreach (var prd in Model)
+        {
+            <li>@prd.ProductName</li>
+        }
+
+    </ul>*@
+
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h2>Product Details</h2>
+
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                @foreach (var prd in Model)
+                {
+                    <tr>
+                        <td>@prd.ProductName</td>
+                        <td>@prd.Category</td>
+                        <td>@prd.Price</td>
+                        <td>@prd.Quantity</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
