@@ -4,28 +4,53 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace EClerx.MVC.Day26.Controllers
 {
     public class ProductsController : Controller
     {
+        private readonly ApplicationDbContext _dbContext = null;
+
+        public ProductsController()
+        {
+            _dbContext = new ApplicationDbContext();
+        }
+
         // GET: Products
         public ActionResult Index()
         {
-            var products = GetProducts();
+            //var products = GetProducts();
+
+            var products = _dbContext.Products.ToList();
             return View(products);//return list of product
         }
 
-        //Data for Product Class
-        public List<Product> GetProducts()
+        //GET
+        public ActionResult Details(int id)
         {
-            return new List<Product>
+            var product = _dbContext.Products.Include(p => p.Category).FirstOrDefault(p => p.Id == id);
+            if (product != null)
             {
-                new Product { Id=1, ProductName="AMD Ryzen 5", Category="Processor", Price=18000, Quantity=20},
-                new Product { Id=2, ProductName="Water Bottle", Category="Home", Price=550, Quantity=230},
-                new Product { Id=3, ProductName="LG 24inch Monitor", Category="Monitor", Price=13000, Quantity=20},
-                new Product { Id=4, ProductName="Logitech Mouse", Category="Accessories", Price=1250, Quantity=60},
-            };
+                return View(product);
+            }
+            return HttpNotFound();
         }
+
+        //GET
+        [HttpGet]
+        public ActionResult Create()
+        {
+            var categories = _dbContext.Categories.ToList();
+            ViewBag.Categories = categories;
+            return View();
+        }
+
+        //[HttpPost]
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+
     }
 }

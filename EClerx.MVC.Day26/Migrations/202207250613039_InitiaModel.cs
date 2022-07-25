@@ -1,0 +1,31 @@
+﻿namespace EClerx.MVC.Day26.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class InitiaModel : DbMigration
+    {
+        public override void Up()
+        {
+            CreateTable(
+                "dbo.Products",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ProductName = c.String(),
+                        Category = c.String(),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Quantity = c.Short(nullable: false),
+                        CreatedDate = c.DateTime(nullable: false, defaultValueSql:"Getdate()"),
+                        ModifiedDate = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+        }
+        
+        public override void Down()
+        {
+            DropTable("dbo.Products");
+        }
+    }
+}

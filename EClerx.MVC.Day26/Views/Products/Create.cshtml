@@ -1,0 +1,40 @@
+﻿@using EClerx.MVC.Day26.Models
+@model Product
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Add New Product</h2>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            @using (Html.BeginForm())
+            {
+                <div class="mb-2">
+                    @Html.LabelFor(p => p.ProductName)
+                    @Html.TextBoxFor(p => p.ProductName, new { @class = "form-control" })
+                </div>
+                <div class="mb-2">
+                    @Html.LabelFor(p => p.Price)
+                    @Html.TextBoxFor(p => p.Price, new { @class = "form-control" })
+                </div>
+                <div class="mb-2">
+                    @Html.LabelFor(p => p.Quantity)
+                    @Html.TextBoxFor(p => p.Quantity, new { @class = "form-control" })
+                </div>
+                <div class="mb-2">
+                    @Html.LabelFor(p => p.CategoryId)
+                    @Html.DropDownListFor(p => p.CategoryId, new SelectList(ViewBag.Categories, "Id", "Name"), new { @class = "form-select" })
+                </div>
+                <div class="mb-2">
+                    <button type="submit" class="btn btn-outline-primary">Save</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
