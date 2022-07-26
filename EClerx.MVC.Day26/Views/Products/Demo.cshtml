@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Demo";
+}
+
+<h2>Demo</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="mb-2">
+        <label>First Name</label>
+        <input type="text" class="form-control" name="TxtFirstName" />
+    </div>
+    <div class="mb-2">
+        <label>City</label>
+        <input type="text" class="form-control" name="TxtCity" />
+    </div>
+    <div class="mb-2">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+}
+

@@ -1,0 +1,39 @@
+﻿@using EClerx.MVC.Day26.Models
+@model Product
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete Product</h2>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            @using (Html.BeginForm())
+            {                
+                <div class="mb-2">
+                    @Html.LabelFor(p => p.ProductName)
+                    @Html.TextBoxFor(p => p.ProductName, new { @class = "form-control", @readonly="readonly" })
+                </div>
+                <div class="mb-2">
+                    @Html.LabelFor(p => p.Price)
+                    @Html.TextBoxFor(p => p.Price, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+                <div class="mb-2">
+                    @Html.LabelFor(p => p.Quantity)
+                    @Html.TextBoxFor(p => p.Quantity, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+                <div class="mb-2">
+                    @Html.LabelFor(p => p.CategoryId)
+                    @Html.TextBoxFor(p => p.Category.Name, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+                <div class="mb-2">
+                    <button type="submit" class="btn btn-outline-primary">Delete</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

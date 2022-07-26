@@ -46,11 +46,62 @@ namespace EClerx.MVC.Day26.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        [HttpPost]
+        public ActionResult Create(Product product)
+        {
+            if(ModelState.IsValid)
+            {
+                _dbContext.Products.Add(product);
+                _dbContext.SaveChanges();//To reflect the changes to database
+                return RedirectToAction("Index");
+            }
+            var categories = _dbContext.Categories.ToList();
+            ViewBag.Categories = categories;
+            return View();
+        }
+
+        //EDIT
+        public ActionResult Edit(int id)
+        {
+            var product = _dbContext.Products.Include(p => p.Category).FirstOrDefault(p => p.Id == id);
+            var categories = _dbContext.Categories.ToList();
+            ViewBag.Categories = categories;
+            return View(product);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                var productFromDb = _dbContext.Products.FirstOrDefault(p => p.Id == product.Id);
+                productFromDb.Price = product.Price;
+                productFromDb.Quantity = product.Quantity;
+                _dbContext.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            var categories = _dbContext.Categories.ToList();
+            ViewBag.Categories = categories;
+            return View(product);
+        }
+
+        //GET : Delete
+        public ActionResult Delete(int id)
+        {
+            var product = _dbContext.Products.Include(p => p.Category).FirstOrDefault(p => p.Id == id);
+            var categories = _dbContext.Categories.ToList();
+            ViewBag.Categories = categories;
+            return View(product);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Product product)
+        {
+            var productFromDb = _dbContext.Products.FirstOrDefault(p => p.Id == product.Id);
+            _dbContext.Products.Remove(productFromDb);
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
     }
 }

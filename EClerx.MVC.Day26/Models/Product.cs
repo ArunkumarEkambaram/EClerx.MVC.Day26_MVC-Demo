@@ -1,12 +1,21 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace EClerx.MVC.Day26.Models
 {
     public class Product
     {
         public int Id { get; set; }
-        public string ProductName { get; set; }       
+
+        [Required(ErrorMessage = "Product Name cannot be empty")]
+        [Display(Name = "Product Name")]
+        public string ProductName { get; set; }
+
+        [Required]
         public decimal Price { get; set; }
+
+        [Required]
+        [Range(1, 200, ErrorMessage = "Quantity must be between 1 and 200")]
         public short Quantity { get; set; }
 
         //Auditable Column
@@ -16,6 +25,8 @@ namespace EClerx.MVC.Day26.Models
         //Reference Table
         public Category Category { get; set; }
         //Foreign Key Column
+        [Required]
+        [Display(Name = "Category Name")]
         public int CategoryId { get; set; }
     }
 }

@@ -148,6 +148,10 @@
     <Compile Include="Migrations\202207250712454_CreateFKOnProduct.designer.cs">
       <DependentUpon>202207250712454_CreateFKOnProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207260454282_AlterColumnProductname.cs" />
+    <Compile Include="Migrations\202207260454282_AlterColumnProductname.designer.cs">
+      <DependentUpon>202207260454282_AlterColumnProductname.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Category.cs" />
@@ -211,6 +215,9 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Demo.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -254,6 +261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207250712454_CreateFKOnProduct.resx">
       <DependentUpon>202207250712454_CreateFKOnProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207260454282_AlterColumnProductname.resx">
+      <DependentUpon>202207260454282_AlterColumnProductname.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
