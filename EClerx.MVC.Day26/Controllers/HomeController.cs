@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EClerx.MVC.Day26.Models;
+using EClerx.MVC.Day26.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,22 @@ namespace EClerx.MVC.Day26.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApplicationDbContext _dbContext = null;
+
+        public HomeController()
+        {
+            _dbContext = new ApplicationDbContext();
+        }
+
         public ViewResult Index()
         {
-            return View();
+            var customer = _dbContext.Customers.FirstOrDefault(c => c.Id == 1);
+            var product = _dbContext.Products.FirstOrDefault(p => p.Id == 2);
+            ProductAndCustomerVM vm = new ProductAndCustomerVM();
+            vm.Name = customer.Name;
+            vm.DateOfBirth = customer.DateOfBirth;
+            vm.Product = product;
+            return View(vm);
         }
 
         public ActionResult About()

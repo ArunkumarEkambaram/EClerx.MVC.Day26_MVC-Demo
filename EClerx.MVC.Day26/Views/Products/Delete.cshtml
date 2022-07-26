@@ -12,7 +12,8 @@
     <div class="row">
         <div class="col-6">
             @using (Html.BeginForm())
-            {                
+            {        
+                @Html.AntiForgeryToken()
                 <div class="mb-2">
                     @Html.LabelFor(p => p.ProductName)
                     @Html.TextBoxFor(p => p.ProductName, new { @class = "form-control", @readonly="readonly" })

@@ -47,6 +47,7 @@ namespace EClerx.MVC.Day26.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         public ActionResult Create(Product product)
         {
             if(ModelState.IsValid)
@@ -70,6 +71,7 @@ namespace EClerx.MVC.Day26.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         public ActionResult Edit(Product product)
         {
             if (ModelState.IsValid)
@@ -95,6 +97,7 @@ namespace EClerx.MVC.Day26.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         public ActionResult Delete(Product product)
         {
             var productFromDb = _dbContext.Products.FirstOrDefault(p => p.Id == product.Id);
