@@ -13,12 +13,14 @@ namespace EClerx.MVC.Day26
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute("ByIdAndName", "{controller}/{action}/{id}/{name}");
+            routes.MapMvcAttributeRoutes();
+
+            //routes.MapRoute("ByIdAndName", "{controller}/{action}/{id}/{name}");
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "About", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

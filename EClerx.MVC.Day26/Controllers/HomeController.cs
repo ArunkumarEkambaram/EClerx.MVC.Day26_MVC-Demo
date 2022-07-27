@@ -5,9 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace EClerx.MVC.Day26.Controllers
-{
+{    
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _dbContext = null;
@@ -17,15 +18,33 @@ namespace EClerx.MVC.Day26.Controllers
             _dbContext = new ApplicationDbContext();
         }
 
-        public ViewResult Index()
+        private IEnumerable<SelectListItem> PopulateCategories()
         {
-            var customer = _dbContext.Customers.FirstOrDefault(c => c.Id == 1);
-            var product = _dbContext.Products.FirstOrDefault(p => p.Id == 2);
-            ProductAndCustomerVM vm = new ProductAndCustomerVM();
-            vm.Name = customer.Name;
-            vm.DateOfBirth = customer.DateOfBirth;
-            vm.Product = product;
-            return View(vm);
+            return _dbContext.Categories.Select(c => new SelectListItem
+            {
+                Value = c.Name,
+                Text = c.Name,
+            }).AsEnumerable();
+        }
+
+        public ActionResult Index()
+        {
+            ProductsByCategoryVM productsByCategory = new ProductsByCategoryVM();
+            var categories = PopulateCategories();
+            productsByCategory.Categories = categories;
+            return View(productsByCategory);
+        }
+
+        //[HttpGet]
+        public ActionResult GetProducts(string CategoryName)
+        {
+            ProductsByCategoryVM productsByCategory = new ProductsByCategoryVM();
+            var products = _dbContext.Products.Include(p => p.Category).Where(p => p.Category.Name == CategoryName);
+            productsByCategory.Products = products;
+
+            var categories = PopulateCategories();
+            productsByCategory.Categories = categories;
+            return View("Index", productsByCategory);
         }
 
         public ActionResult About()
