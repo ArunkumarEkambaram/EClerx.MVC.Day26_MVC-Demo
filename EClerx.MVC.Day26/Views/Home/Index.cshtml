@@ -16,7 +16,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Select a Category</label>
                 <div class="col-sm-3">
-                    @Html.DropDownList("CategoryName", Model.Categories, "--Select--", new { @class = "form-select" })                    
+                    @Html.DropDownList("CategoryName", Model.Categories, "--Select--", new { @class = "form-select" })
                 </div>
                 <div class="col-sm-4">
                     <button type="submit" class="btn btn-success">Search</button>
@@ -24,35 +24,9 @@
             </div>
         }
 
-    <div>
-        @if (Model.Products != null)
-        {
-            if (Model.Products.Count() > 0)
-            {
-                <div class="col-6 mb-3">
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <th>Product Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                        </tr>
-                        @foreach (var prd in Model.Products)
-                        {
-                            <tr>
-                                <td>@prd.ProductName</td>
-                                <td>@prd.Price</td>
-                                <td>@prd.Quantity</td>
-                            </tr>
-                        }
-                    </table>
-                </div>
-            }
-            else
-            {
-                <div class="h3">No Records</div>
-            }
-        }
+        <div>
+            @Html.Partial("_ProductDetailsPartial", Model)
 
-    </div>
+        </div>
     </div>
 </div>
