@@ -161,8 +161,17 @@
     <Compile Include="Migrations\202207260633502_CreatetableOrders.designer.cs">
       <DependentUpon>202207260633502_CreatetableOrders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207270556564_CreateTableBook.cs" />
+    <Compile Include="Migrations\202207270556564_CreateTableBook.designer.cs">
+      <DependentUpon>202207270556564_CreateTableBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207270559523_NewRowToBook.cs" />
+    <Compile Include="Migrations\202207270559523_NewRowToBook.designer.cs">
+      <DependentUpon>202207270559523_NewRowToBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Order.cs" />
@@ -233,6 +242,8 @@
     <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Customers\Create.cshtml" />
     <Content Include="Views\Shared\_ProductDetailsPartial.cshtml" />
+    <Content Include="Views\Home\DisplayBooks.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -285,6 +296,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207260633502_CreatetableOrders.resx">
       <DependentUpon>202207260633502_CreatetableOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207270556564_CreateTableBook.resx">
+      <DependentUpon>202207270556564_CreateTableBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207270559523_NewRowToBook.resx">
+      <DependentUpon>202207270559523_NewRowToBook.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

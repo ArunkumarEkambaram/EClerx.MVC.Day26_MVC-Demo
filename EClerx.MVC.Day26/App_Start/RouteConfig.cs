@@ -14,8 +14,7 @@ namespace EClerx.MVC.Day26
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapMvcAttributeRoutes();
-
-            //routes.MapRoute("ByIdAndName", "{controller}/{action}/{id}/{name}");
+          
 
             routes.MapRoute(
                 name: "Default",

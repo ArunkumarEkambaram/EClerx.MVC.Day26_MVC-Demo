@@ -1,0 +1,32 @@
+﻿@model IEnumerable<EClerx.MVC.Day26.Models.Book>
+
+@{
+    ViewBag.Title = "DisplayBooks";
+}
+
+<h2>DisplayBooks</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookName)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "SearchBook", new { id = item.BookId }) |
+            </td>
+        </tr>
+    }
+
+</table>

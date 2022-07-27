@@ -8,7 +8,8 @@ using System.Web.Mvc;
 using System.Data.Entity;
 
 namespace EClerx.MVC.Day26.Controllers
-{    
+{
+    [RoutePrefix("Home")]
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _dbContext = null;
@@ -35,7 +36,7 @@ namespace EClerx.MVC.Day26.Controllers
             return View(productsByCategory);
         }
 
-        //[HttpGet]
+        //[HttpGet]        
         public ActionResult GetProducts(string CategoryName)
         {
             ProductsByCategoryVM productsByCategory = new ProductsByCategoryVM();
@@ -45,6 +46,26 @@ namespace EClerx.MVC.Day26.Controllers
             var categories = PopulateCategories();
             productsByCategory.Categories = categories;
             return View("Index", productsByCategory);
+        }
+
+        public ActionResult Action()
+        {
+            return View();
+        }
+
+        [Route("DisplayBook/All")]
+        public ActionResult DisplayBooks()
+        {
+            var books = _dbContext.Books.ToList();
+            return View(books);
+        }
+
+        //Book Details
+        [Route("SearchBook/{bookId}")]
+        public ActionResult Details(string bookId)
+        {
+            var book = _dbContext.Books.FirstOrDefault(b => b.BookId == bookId);
+            return View(book);
         }
 
         public ActionResult About()
@@ -61,36 +82,36 @@ namespace EClerx.MVC.Day26.Controllers
             return View();
         }
 
-        public ActionResult Test(int? id)
-        {
-            //if (id.HasValue)
-            //{
-            //    return Content($"Value of id :{id.Value}");
-            //}
-            //return Content("No ID given");
-            //return HttpNotFound("Product Id doesn't exist");
-            ViewBag.Message = "This is Test Action Method";
-            return View();
-        }
+        //public ActionResult Test(int? id)
+        //{
+        //    //if (id.HasValue)
+        //    //{
+        //    //    return Content($"Value of id :{id.Value}");
+        //    //}
+        //    //return Content("No ID given");
+        //    //return HttpNotFound("Product Id doesn't exist");
+        //    ViewBag.Message = "This is Test Action Method";
+        //    return View();
+        //}
 
-        public ActionResult Details(int? custId)
-        {
-            if (custId.HasValue)
-            {
-                return Content($"Customer ID :{custId.Value}");
-            }
-            return Content("No Customer ID");
-        }
+        //public ActionResult Details(int? custId)
+        //{
+        //    if (custId.HasValue)
+        //    {
+        //        return Content($"Customer ID :{custId.Value}");
+        //    }
+        //    return Content("No Customer ID");
+        //}
 
         //GET
         //Home/SearchByIdAndName/101/Jagan
-        public ActionResult SearchByIdAndName(int? id, string name)
-        {
-            if (id.HasValue && !string.IsNullOrEmpty(name))
-            {
-                return Content($"Id :{id.Value}\tName :{name}");
-            }
-            return Content("No Data");
-        }
+        //public ActionResult SearchByIdAndName(int? id, string name)
+        //{
+        //    if (id.HasValue && !string.IsNullOrEmpty(name))
+        //    {
+        //        return Content($"Id :{id.Value}\tName :{name}");
+        //    }
+        //    return Content("No Data");
+        //}
     }
 }
